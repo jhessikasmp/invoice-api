@@ -2,7 +2,6 @@ const nodemailer = require('nodemailer');
 const fs = require('fs');
 const logger = require('../logger');
 
-// Configurar transporter
 const createTransporter = () => {
   return nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
@@ -15,7 +14,6 @@ const createTransporter = () => {
   });
 };
 
-// Enviar fatura por email
 exports.sendInvoiceEmail = async (customer, invoiceData, pdfPath) => {
   try {
     const transporter = createTransporter();
@@ -27,11 +25,11 @@ exports.sendInvoiceEmail = async (customer, invoiceData, pdfPath) => {
       html: `
         <h2>Fattura N° ${invoiceData.invoiceNumber}</h2>
         <p>Gentile ${customer.name},</p>
-        <p>Em anexo segue sua fattura.</p>
-        <p><strong>Total: €${invoiceData.total.toFixed(2)}</strong></p>
-        <p>Obrigado pela preferência!</p>
+        <p>In allegato troverai la tua fattura.</p>
+        <p><strong>Totale: €${invoiceData.total.toFixed(2)}</strong></p>
+        <p>Grazie per la tua fiducia!</p>
         <br>
-        <p>Atenciosamente,<br>Sua Empresa</p>
+        <p>Cordiali saluti,<br>La Tua Azienda</p>
       `,
       attachments: [
         {

@@ -84,11 +84,9 @@ exports.generateInvoicePDF = async (invoice) => {
             yPosition += 20
             doc.moveTo(50, yPosition).lineTo(550, yPosition).stroke()
             
-            // Adicionar os itens da fatura
             yPosition += 15
             if (invoice.items && invoice.items.length > 0) {
                 invoice.items.forEach(item => {
-                    // Logging para debug
                     console.log('Item da fatura:', JSON.stringify(item));
                     console.log('Produto:', item.product ? JSON.stringify(item.product) : 'Produto não disponível');
                     
@@ -105,7 +103,6 @@ exports.generateInvoicePDF = async (invoice) => {
                 });
             }
             
-            // Linha separadora
             doc.moveTo(50, yPosition).lineTo(550, yPosition).stroke();
             
             yPosition += 15

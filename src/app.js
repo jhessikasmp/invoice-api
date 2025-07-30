@@ -3,11 +3,10 @@ const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 const swaggerJsdoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express')
-const customerRoutes = require('./routers/customerRoutes')
-const invoiceRoutes = require('./routers/invoiceRoutes')
-const productRoutes = require('./routers/productRoutes')
-const errorHandler = require('./middleware/errorHandler')
-
+const customerRoutes = require('./routes/customerRoutes')
+const invoiceRoutes = require('./routes/invoiceRoutes')
+const productRoutes = require('./routes/productRoutes')
+const errorHandler = require('./middlewares/errorHandler')
 
 dotenv.config()
 
@@ -26,7 +25,7 @@ const swaggerSpec = swaggerJsdoc({
             version: '1.0.0',
             description: 'Sistema di emissione di note fiscali semplificate'}
     },
-    apis: ['./src/routers/*.js']
+    apis: ['./src/routes/*.js']
 })
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
