@@ -42,7 +42,7 @@ exports.sendInvoiceEmail = async (customer, invoiceData, pdfPath) => {
     };
     
     const result = await transporter.sendMail(mailOptions);
-    logger.info('Email enviado', { to: customer.email, messageId: result.messageId });
+    logger.info('E-mail inviata', { to: customer.email, messageId: result.messageId });
     
     return result;
   } catch (error) {
