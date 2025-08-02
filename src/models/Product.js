@@ -5,7 +5,7 @@ const ProductSchema = new mongoose.Schema({
     description: { type: String },
     type: { type: String, enum: ['prodotto', 'servizio'], required: true },
     unitPrice: { type: Number, required: true },
-    unit: { type: String, enum: ['pezzo', 'ora', 'chilogrammo'] ,default: 'pz' },
+    unit: { type: String, enum: ['pezzo', 'ora', 'chilogrammo'] ,default: 'pezzo' },
     vatRate: { type: Number, default: 22 },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now }
