@@ -46,12 +46,12 @@ exports.sendInvoiceEmail = async (customer, invoiceData, pdfPath) => {
     
     return result;
   } catch (error) {
-    logger.error('Erro ao enviar email', { 
+    logger.error(`Errore nell'invio dell'e-mail`, { 
       error: error.message,
       stack: error.stack,
       customer: customer.email,
       invoice: invoiceData.invoiceNumber
     });
-    throw new Error(`Erro ao enviar email: ${error.message}`);
+    throw new Error(`Errore nell'invio dell'e-mail: ${error.message}`);
   }
 };
