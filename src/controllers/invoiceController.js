@@ -94,20 +94,17 @@ exports.generatePDF = async (req, res, next) => {
             return res.send(invoice.pdfBuffer)
         }
 
-        // Certifique-se de que os produtos estão completamente populados
         try {
-            // Verificar se o populate foi bem-sucedido
-            console.log('Itens antes do populate adicional:', JSON.stringify(invoice.items));
+            console.log('Elementi prima delpopulate aggiuntivo:', JSON.stringify(invoice.items));
             
-            // Usar opções mais específicas para o populate
             await invoice.populate({
                 path: 'items.product',
-                select: 'name type description unitPrice vatRate' // Garantir que todos os campos necessários sejam buscados
+                select: 'name type description unitPrice vatRate'
             });
             
-            console.log('Itens após o populate adicional:', JSON.stringify(invoice.items));
+            console.log('Elementi prima delpopulate aggiuntivo:', JSON.stringify(invoice.items));
         } catch (populateError) {
-            console.error('Erro ao popular produtos:', populateError);
+            console.error('Errore ai prodotti popolari:', populateError);
         }
 
         const pdfPath = await generateInvoicePDF(invoice)
