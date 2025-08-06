@@ -95,16 +95,16 @@ exports.generatePDF = async (req, res, next) => {
         }
 
         try {
-            console.log('Elementi prima delpopulate aggiuntivo:', JSON.stringify(invoice.items));
+            console.log('Elementi prima del populate aggiuntivo:', JSON.stringify(invoice.items));
             
             await invoice.populate({
                 path: 'items.product',
                 select: 'name type description unitPrice vatRate'
             });
             
-            console.log('Elementi prima delpopulate aggiuntivo:', JSON.stringify(invoice.items));
+            console.log('Elementi prima del populate aggiuntivo:', JSON.stringify(invoice.items));
         } catch (populateError) {
-            console.error('Errore ai prodotti popolari:', populateError);
+            console.error('Errore ai prodotti popolati:', populateError);
         }
 
         const pdfPath = await generateInvoicePDF(invoice)
@@ -171,7 +171,7 @@ exports.sendEmail = async (req,res,next) => {
             res.status(500).json({ error: `Errore durante l'invio dell'email: ${emailError.message}` })
         }
     } catch (err) {
-        logger.error(`Errore nell'elaborazione dell'invio della fattur`, { error: err.message, invoiceId: req.params.id })
+        logger.error(`Errore nell'elaborazione dell'invio della fattura`, { error: err.message, invoiceId: req.params.id })
         next(err)
     }
 }
